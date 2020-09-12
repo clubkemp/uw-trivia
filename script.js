@@ -11,7 +11,7 @@ var time = 10
 // TODO:Start the game when play is pressed
 startBtn.addEventListener("click", function(event){
     jumboContentDiv.style.display = "none"
-    gameContentDiv.setAttribute("class", "col")
+    gameContentDiv.setAttribute("class", "col-12 mt-5")
 
 })
     //TODO: Create clock

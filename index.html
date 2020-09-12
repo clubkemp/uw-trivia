@@ -15,9 +15,9 @@
         </div>
     </header>
     <main class="container">
-        <div class="row justify-content-center">
+        <div class="row mt-5">
             <div class="col" id="jumbo-content">
-                <div class="jumbotron col-md-6">
+                <div class="jumbotron col-md-10 col-sm-12">
                     <h1 class="display-4">Welcome to Trivia!</h1>
                     <p class="lead">The game is simple, answer as many questions as you can regarding Jack as quickly as possible. Each answer get's a point, each wrong answer reduces your time</p>
                     <hr class="my-4">
@@ -26,26 +26,28 @@
                 </div>
             </div>
             <div class="hide" id="game-content">
-                <div class="row justify-content-center">
-                    <div class="col-4">
-                        <img src="http://placekitten.com/300/300" class="align-self-center mr-3" alt="...">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 offset-lg-2 game">
+                        <img src="http://placekitten.com/300/300" class="d-flex img-fluid mx-auto"alt="...">
                     </div>
-                    <div class="col-2 d-flex align-content-center">
+                    <div class="d-flex col-lg-2 col-md-12 justify-content-center mt-2 game">
                         <form>
-                            <input type="radio" id="male" name="gender" value="male">
-                            <label for="male">Male</label><br>
-                            <input type="radio" id="female" name="gender" value="female">
-                            <label for="female">Female</label><br>
-                            <input type="radio" id="other" name="gender" value="other">
-                            <label for="other">Other</label>
+                            <input type="radio" id="a1" name="gender" value="">
+                            <label for="a1">Answer 1</label><br>
+                            <input type="radio" id="a2" name="gender" value="">
+                            <label for="a2">Answer 2</label><br>
+                            <input type="radio" id="a3" name="gender" value="other">
+                            <label for="a3">Answer 3</label><br>
+                            <input type="radio" id="a4" name="gender" value="other">
+                            <label for="a4">Answer 4</label>
                           </form>
                     </div>
                 </div>
             </div>  
         </div>
-        <div class="row justify-content-center">
+        <div class="row justify-content-center mt-5">
             <div class="col-1">
-                <h3 id="clock"></h3>
+                <h3 id="clock">0s</h3>
             </div>
         </div>
     </main>

@@ -6,7 +6,7 @@ body{
     margin: 20px auto; 
 }
 .row{
-    margin-top: 10vh;
+    margin: auto, 0px;
 }
 .hide{
     display: none;

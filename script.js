@@ -92,9 +92,14 @@ function cardBuild(i) {
     gameContentDiv.setAttribute("class", "col-12 mt-5");
     //TODO:Set the answer content using the answers Array
     gameContentDiv.querySelector("img").setAttribute("src", currentCard[0].imgSrc);
-    gameContentDiv.querySelector("img").setAttribute("src", currentCard[0].imgSrc);
-    gameContentDiv.querySelector("img").setAttribute("src", currentCard[0].imgSrc);
-    gameContentDiv.querySelector("img").setAttribute("src", currentCard[0].imgSrc);
+    gameContentDiv.querySelector("#a1").setAttribute("value", answers[0]);
+    gameContentDiv.querySelector("#a1-label").textContent=answers[0];
+    gameContentDiv.querySelector("#a2").setAttribute("value", answers[1]);
+    gameContentDiv.querySelector("#a2-label").textContent=answers[1];
+    gameContentDiv.querySelector("#a3").setAttribute("value", answers[2]);
+    gameContentDiv.querySelector("#a3-label").textContent=answers[2];
+    gameContentDiv.querySelector("#a4").setAttribute("value", answers[3]);
+    gameContentDiv.querySelector("#a4-label").textContent=answers[3];
 
 }
 

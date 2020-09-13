@@ -31,8 +31,10 @@ var radioIds = ["a1","a2","a3","a4"]
 var time = 3
 //controls what
 var cardNum = 1
-//
-var chosenAnswer = ""
+//variable to hold the chosen radio on next
+var chosenAnswer
+//variable to hold the cards current correct answer
+var currentAnswer
 
 //Start the game when play is pressed
 function timer(){
@@ -80,6 +82,8 @@ function cardBuild(i) {
     var answers = [];
     //push the right answer to the array
     answers.push( currentCard[0].title)
+    //update the currentAnswer variable with the right answer
+    currentAnswer = currentCard[0].title
     //while the array is less than 4 total
     while(answers.length <= 3){
         //grab a random number that will be an index of all total answers
@@ -114,9 +118,16 @@ function cardBuild(i) {
 
 }
 
+function checkAnswer(answerToCheck){
+console.log(answerToCheck);
+console.log(currentAnswer);
+}
 nextBtn.addEventListener("click", function(event){
   event.preventDefault();
-  console.log(chosenAnswer);
+  var ele = document.getElementsByName("answer");
+   for(var i=0;i<ele.length;i++)
+      ele[i].checked = false;
+  checkAnswer(chosenAnswer);
   cardNum++;
   cardBuild(cardNum);
 });

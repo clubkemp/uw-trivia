@@ -1,3 +1,8 @@
+//TODO: maybe adjust the time decution to 5s
+//TODO: indicate a right or wrong answer
+//TODO: Flash the clock when you get a wrong asnwer
+//TODO:
+
 //Create triva card deck and answer bucket
 var answerBucket = ["3 Muskateers", "100 Grand", "Almond Joy", "Baby Ruth","Butterfinger", "Cadbury Carmel Egg", "Charleston Chew", "Heath", "Mars Bar", "Milky Way", "Payday", "Rolo", "Snickers", "Tootsie Roll" ];
 var cardDeck = [

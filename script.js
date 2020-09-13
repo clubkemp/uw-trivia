@@ -1,5 +1,5 @@
 //Create triva card deck and answer bucket
-var answerBucket = ["3 Muskateers", "100 Grand", "Almond Joy", "Baby Ruth","Butterfinger", "Cadbury Carmel Egg", "Charleston Chew", "Heath", "Mars Bar", "Milky Way", "Payday", "Rolo", "Snickers", "Tootsie Roll" ]
+var answerBucket = ["3 Muskateers", "100 Grand", "Almond Joy", "Baby Ruth","Butterfinger", "Cadbury Carmel Egg", "Charleston Chew", "Heath", "Mars Bar", "Milky Way", "Payday", "Rolo", "Snickers", "Tootsie Roll" ];
 var cardDeck = [
   { title: "3 Muskateers", imgSrc: "./assets/3muskateers.JPG", index:1},
   { title: "100 Grand", imgSrc: "./assets/100grand.jpeg", index:2},
@@ -18,23 +18,27 @@ var cardDeck = [
 
 //DOM Variables
 // var jumbotronDiv  = document.querySelector(".jumbotron")
-var gameContentDiv = document.querySelector("#game-content")
-var jumboContentDiv = document.querySelector("#jumbo-content")
-var startBtn = document.querySelector("#play-button")
-var nextBtn = document.querySelector("#flip-button")
-var flipBtn = document.querySelector("#flip-button")
-var clockH3 = document.querySelector("#clock")
-var form = document.querySelector("#form")
-var radioIds = ["a1","a2","a3","a4"]
+var gameContentDiv = document.querySelector("#game-content");
+var jumboContentDiv = document.querySelector("#jumbo-content");
+var startBtn = document.querySelector("#play-button");
+var nextBtn = document.querySelector("#flip-button");
+var flipBtn = document.querySelector("#flip-button");
+var clockH3 = document.querySelector("#clock");
+var form = document.querySelector("#form");
+//not a dom variable, but used to iterate over the radio ids
+var radioIds = ["a1","a2","a3","a4"];
 
+//Score
+var score = 0;
 //what we want out total time to count down from
-var time = 3
+var time = 60;
 //controls what
-var cardNum = 1
+//TODO: Need a way to randomize the card number, then pick random numbers between 1-13 that haven't been picked before
+var cardNum = 1;
 //variable to hold the chosen radio on next
-var chosenAnswer
+var chosenAnswer;
 //variable to hold the cards current correct answer
-var currentAnswer
+var currentAnswer;
 
 //Start the game when play is pressed
 function timer(){
@@ -42,15 +46,17 @@ function timer(){
     var counter = setInterval(startTime,1000);
     //callback for setInterval
     function startTime(){
-        //TODO: End Game
-        if(time === 0){
-            //TODO:Endgame
-            clearInterval(counter);
+        //End Game if time runs out
+        if(time <= 0){
+          endGame();
+          clearInterval(counter);
+        }else{
+          time--;
+          clockH3.textContent = `${time}s`;
         }
-        //TODO:UPdate the DOM with the new time
-        time--
-    }
-}
+        
+    };
+};
 
 //Fisher-Yates Shuffle
 function shuffle(array) {
@@ -70,76 +76,106 @@ function shuffle(array) {
     }
   
     return array;
+  };
+
+//Fired on Start and next --- function that will build the next trivia card
+function cardBuild(i) {
+  //use array method filter to return only the objects that match our card number(i argument)
+  var currentCard = cardDeck.filter(obj => {
+      return (obj.index === i);
+    });
+  //setup array for the possible answers
+  var answers = [];
+  //push the right answer to the array
+  answers.push( currentCard[0].title);
+  //update the currentAnswer variable with the right answer
+  currentAnswer = currentCard[0].title;
+  //while the array is less than 4 total
+  while(answers.length <= 3){
+      //grab a random number that will be an index of all total answers
+      var rando = Math.floor(Math.random()*answerBucket.length);
+      //check if the answer at index rando is already in the possible answers
+      if(!answers.includes(answerBucket[rando])){
+          //if it isn't in the array, push it onto it
+          answers.push(answerBucket[rando]);
+      };
+  }
+  //randomize the answer order by shuffle
+  answers = shuffle(answers);
+
+  gameContentDiv.setAttribute("class", "col-12 mt-5");
+  clockH3.setAttribute("class", "clock")
+  //set the picture displayed to the current trivia card item
+  gameContentDiv.querySelector("img").setAttribute("src", currentCard[0].imgSrc);
+  //go loop through radio buttons and update the values and labels to match the items from the answer array created above
+  for (var i = 0; i < radioIds.length; i++){
+    //values
+    gameContentDiv.querySelector(`#${radioIds[i]}`).setAttribute("value", answers[i]);
+    //labels
+    gameContentDiv.querySelector(`#${radioIds[i]}-label`).textContent=answers[i];
+  };
+};
+
+//fired on next button
+function checkAnswer(answerToCheck){
+  //check if the users guess, is euql to the current answer set in the build card function 
+  if(answerToCheck === currentAnswer){
+    //iff correct add to score
+    score++;
+    console.log(score);
+  }else{
+    //if incorrect, reduce the users time
+    time = time - 10;
   }
 
-//function that will build the next trivia card
-function cardBuild(i) {
-    //use array method filter to return only the objects that match our card number(i argument)
-    var currentCard = cardDeck.filter(obj => {
-        return (obj.index === i)
-      });
-    //setup array for the possible answers
-    var answers = [];
-    //push the right answer to the array
-    answers.push( currentCard[0].title)
-    //update the currentAnswer variable with the right answer
-    currentAnswer = currentCard[0].title
-    //while the array is less than 4 total
-    while(answers.length <= 3){
-        //grab a random number that will be an index of all total answers
-        var rando = Math.floor(Math.random()*answerBucket.length)
-        //check if the answer at index rando is already in the possible answers
-        if(!answers.includes(answerBucket[rando])){
-            //if it isn't in the array, push it onto it
-            answers.push(answerBucket[rando])
-        }
-    }
-    //randomize the answer order by shuffle
-    answers = shuffle(answers);
+};
 
-    gameContentDiv.setAttribute("class", "col-12 mt-5");
-    //TODO:Set the answer content using the answers Array
-    gameContentDiv.querySelector("img").setAttribute("src", currentCard[0].imgSrc);
-    for (var i = 0; i < radioIds.length; i++){
-      gameContentDiv.querySelector(`#${radioIds[i]}`).setAttribute("value", answers[i]);
-      gameContentDiv.querySelector(`#${radioIds[i]}-label`).textContent=answers[i];
-    }
-   
-    form.addEventListener("change", function(event){
-      for (var i = 0; i < radioIds.length; i++){
-        if(gameContentDiv.querySelector(`#${radioIds[i]}`).checked){
-          chosenAnswer = gameContentDiv.querySelector(`#${radioIds[i]}`).value
-        }
-      };
-    })
-    
-    
-    
-
+//fired at time expires in timer function, or if you run out of cards in next click
+function endGame(){
+  //TODO: build the scoreboard with playButton
+  alert(`You've made it to the end! your score was ${score}`)
 }
-
-function checkAnswer(answerToCheck){
-console.log(answerToCheck);
-console.log(currentAnswer);
-}
-nextBtn.addEventListener("click", function(event){
-  event.preventDefault();
-  var ele = document.getElementsByName("answer");
-   for(var i=0;i<ele.length;i++)
-      ele[i].checked = false;
-  checkAnswer(chosenAnswer);
-  cardNum++;
-  cardBuild(cardNum);
-});
-
 //Start Game!
 startBtn.addEventListener("click", function(event){
     //turn off the jumbotron intro section
-    jumboContentDiv.style.display = "none"
+    jumboContentDiv.style.display = "none";
     //fire the cardBuild function with the current triva card
     cardBuild(cardNum);
     //start the timer
     timer();
 });
-//TODO: Add event listener for the next button
-//TODO: Create a function that adds score or subtracts time
+
+nextBtn.addEventListener("click", function(event){
+  //Prevent default behavior of page refresh on form submit
+  event.preventDefault();
+  //setup variable that is all the radio buttons by name
+  var ele = document.getElementsByName("answer");
+  //cycle through the radio buttons a deactivate any that are checked
+  for(var i=0;i<ele.length;i++){
+    ele[i].checked = false;
+  };
+  //check the answer quality by running checkAnswer function, passing it the global variable of chosen answer set in form event listener
+  checkAnswer(chosenAnswer);
+  //iterate the cardNum global variable
+  cardNum++;
+  //ENDGAME if card num exceeds card deck
+  if (cardNum > cardDeck.length){
+    endGame()
+  }else{
+    //this is in there to instantly update the timer if you lost 10s, otherwise it waits until the next tick
+    clockH3.textContent = `${time}s`
+    //rebuild the card to the new number.
+    cardBuild(cardNum);
+  };
+});
+//listens for the users input on the radio buttons in the form
+form.addEventListener("change", function(event){
+  //each time there is change, loop through the radio DOM elements
+  for (var i = 0; i < radioIds.length; i++){
+    //if the radio button is checked 
+    if(gameContentDiv.querySelector(`#${radioIds[i]}`).checked){
+      //set the global variable chosen answer to the checked radio button. That answer is used in the check answer function
+      chosenAnswer = gameContentDiv.querySelector(`#${radioIds[i]}`).value;
+    };
+  };
+});

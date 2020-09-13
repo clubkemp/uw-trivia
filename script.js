@@ -21,14 +21,18 @@ var cardDeck = [
 var gameContentDiv = document.querySelector("#game-content")
 var jumboContentDiv = document.querySelector("#jumbo-content")
 var startBtn = document.querySelector("#play-button")
+var nextBtn = document.querySelector("#flip-button")
 var flipBtn = document.querySelector("#flip-button")
 var clockH3 = document.querySelector("#clock")
+var form = document.querySelector("#form")
+var radioIds = ["a1","a2","a3","a4"]
 
 //what we want out total time to count down from
 var time = 3
 //controls what
 var cardNum = 1
-
+//
+var chosenAnswer = ""
 
 //Start the game when play is pressed
 function timer(){
@@ -92,20 +96,30 @@ function cardBuild(i) {
     gameContentDiv.setAttribute("class", "col-12 mt-5");
     //TODO:Set the answer content using the answers Array
     gameContentDiv.querySelector("img").setAttribute("src", currentCard[0].imgSrc);
+    for (var i = 0; i < radioIds.length; i++){
+      gameContentDiv.querySelector(`#${radioIds[i]}`).setAttribute("value", answers[i]);
+      gameContentDiv.querySelector(`#${radioIds[i]}-label`).textContent=answers[i];
+    }
+   
+    form.addEventListener("change", function(event){
+      for (var i = 0; i < radioIds.length; i++){
+        if(gameContentDiv.querySelector(`#${radioIds[i]}`).checked){
+          chosenAnswer = gameContentDiv.querySelector(`#${radioIds[i]}`).value
+        }
+      };
+    })
     
-    gameContentDiv.querySelector("#a1").setAttribute("value", answers[0]);
-    gameContentDiv.querySelector("#a1-label").textContent=answers[0];
     
-    gameContentDiv.querySelector("#a2").setAttribute("value", answers[1]);
-    gameContentDiv.querySelector("#a2-label").textContent=answers[1];
     
-    gameContentDiv.querySelector("#a3").setAttribute("value", answers[2]);
-    gameContentDiv.querySelector("#a3-label").textContent=answers[2];
-    
-    gameContentDiv.querySelector("#a4").setAttribute("value", answers[3]);
-    gameContentDiv.querySelector("#a4-label").textContent=answers[3];
 
 }
+
+nextBtn.addEventListener("click", function(event){
+  event.preventDefault();
+  console.log(chosenAnswer);
+  cardNum++;
+  cardBuild(cardNum);
+});
 
 //Start Game!
 startBtn.addEventListener("click", function(event){

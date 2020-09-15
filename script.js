@@ -1,7 +1,7 @@
 //TODO: maybe adjust the time decution to 5s
 //TODO: indicate a right or wrong answer
 //TODO: Flash the clock when you get a wrong asnwer
-//TODO:
+
 
 //Create triva card deck and answer bucket
 var answerBucket = ["3 Muskateers", "100 Grand", "Almond Joy", "Baby Ruth","Butterfinger", "Cadbury Carmel Egg", "Charleston Chew", "Heath", "Mars Bar", "Milky Way", "Payday", "Rolo", "Snickers", "Tootsie Roll" ];
@@ -18,7 +18,7 @@ var cardDeck = [
   { title: "Payday", imgSrc: "./assets/payday.jpeg", index:10},
   { title: "Rolo", imgSrc: "./assets/rolo.jpeg", index:11},
   { title: "Snickers", imgSrc: "./assets/snickers.jpeg", index:12},
-  { title: "Tootsie Roll", imgSrc: "./assets/tootsieROll.jpg", index:13}
+  { title: "Tootsie Roll", imgSrc: "./assets/tootsieRoll.jpg", index:13}
 ];
 
 //DOM Variables
@@ -35,6 +35,7 @@ var scoreboardBtn = document.querySelector("#scoreboard")
 var scoreboardInput = document.querySelector("#initials")
 var leaderBoardOL = document.querySelector("#leaderboard")
 var scoreAnnounceJumbo = document.querySelector("#score-announce")
+var scoreh3 = document.querySelector("#score-header")
 //not a dom variable, but used to iterate over the radio ids
 var radioIds = ["a1","a2","a3","a4"];
 
@@ -147,6 +148,7 @@ function endGame(){
   gameContentDiv.setAttribute("class", "hide")
   clockH3.setAttribute("class", "hide");
   scoreDialogueDiv.setAttribute("class","jumbotron col-md-10 col-sm-12")
+  scoreh3.textContent = `Your score was ${score} out of 13`
 }
 
 //This function fires on the event listener for the scoreboard button at the end of the game

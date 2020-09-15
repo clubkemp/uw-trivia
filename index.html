@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -19,10 +20,10 @@
             <div class="col" id="jumbo-content">
                 <div class="jumbotron col-md-10 col-sm-12">
                     <h1 class="display-4">Welcome to Trivia!</h1>
-                    <p class="lead">The game is simple, answer as many questions as you can regarding Jack as quickly as possible. Each answer get's a point, each wrong answer reduces your time</p>
+                    <p class="lead">The game is simple, answer as many questions as you can regarding these candy bars as quickly as possible. Each answer get's a point, each wrong answer reduces your time</p>
                     <hr class="my-4">
-                    <p>Once you hit the button you will have X seconds, so be ready!</p>
-                    <a class="btn btn-primary btn-lg" id="play-button" role="button">Learn more</a>
+                    <p>Once you hit the button you will have 60 seconds, so be ready!</p>
+                    <a class="btn btn-primary btn-lg" id="play-button" role="button">Start</a>
                 </div>
             </div>
             <div class="hide" id="game-content">
@@ -51,10 +52,10 @@
 
                     </ol>
                     <div class="jumbotron col-md-10 col-sm-12" id="score-announce">
-                        <h3> Your score was XX!</h1>
+                        <h3 id="score-header"> Your score was XX!</h1>
                         <label for="initial-N">Your initials</label><br>
                         <input type="text" id="initials" name="initial-N"> 
-                        <a class="btn btn-primary btn-sm" id="scoreboard" role="button">Learn more</a>
+                        <a class="btn btn-primary btn-sm" id="scoreboard" role="button">See Scoreboard</a>
                     </div>
                 </div>
             </div>  

@@ -153,54 +153,69 @@ function endGame(){
 function scoreBoard(){
   //turn off the game end announcment secion
   scoreAnnounceJumbo.setAttribute("class","hide")
+  //setup and empty array to load the local memory into
   var array = [];
+  //Setup variable for the sorted scoreboard
   var sortedScoreboard;
+  //pull in the items frm local memory
   var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
-  //TODO: create an if statement around this to print just one thing if its just an obj
-  console.log(scoreboard);
+  //need to figure out if there are multiple items in the scoreboard to be sorted
   if(scoreboard.length >=2){
     sortedScoreboard = scoreboard.sort((a,b) =>{
+      //this if statement compares all the items and sorts them on a return of if they are higher or lower based on score value
       if (a.score < b.score){
         return 1
       }else {
         return -1
       }
     })
+    //If the scoreboard length is 2 or less, that means there is just one item, meaning it is not an array
   }else{
+    //so to turn it into an array, we load our scoreboard object into our empty array
     array.push(scoreboard);
-    console.log(array);
+    //then we can set the sortedScoreboard equal to that array(because my for statement was already setup below)
     sortedScoreboard = array
   }
-  console.log(sortedScoreboard)
+  //Now we go throug the entire soreted list, which might just be one thing
   for (var i=0; i<sortedScoreboard.length; i++){
+    //create empty li tag
     var liElm = document.createElement("li");
+    //populate the text content with the values from our two keys
     liElm.textContent = `Initials: ${sortedScoreboard[i].initial} ---- Score:${sortedScoreboard[i].score}`;
-    console.log(liElm);
+    //attach this li to the OL elements in the dom, before continuing on our loop
     leaderBoardOL.appendChild(liElm);
   }
 }
 
+//Lisetener for our scoreboard button
 scoreboardBtn.addEventListener("click", function(event){
+  //empty array
   var array = [];
+  //first go and get the local memory
   var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
+  //then setup a single obj to this sessions game score
   var newScore = {initial:scoreboardInput.value, score:score } 
-  
-  //TODO: THis is still not behaving how I want, need to pull the scoreboard, but deal whith it when it is empty, or a single obj
+  //Need to check to see if there is scores(undefined), 1 item (object), or multiple (array of objects)  
   if(scoreboard === null){
     // just add the new score to localStorage
-    console.log("No obj in memory");
+    //No obj in memory, just set the scoreboard to that item
     localStorage.setItem("scoreboard",JSON.stringify(newScore));
   }else if(scoreboard.length >=2){
-    console.log("multiple obj in memory");
-    console.log(scoreboard);
+    //multiple objects in scoreboard, array
+    //push the newest score to array, 
     scoreboard.push(newScore);
+    //then set it to the local memory
     localStorage.setItem("scoreboard",JSON.stringify(scoreboard));
   }else{
-    console.log("Single OBJ in memory")
+    // Single OBJ in memory
+    //convert obj to array
     array.push(scoreboard);
+    //then push the newest score
     array.push(newScore);
+    //then set the whole deal to the local memory
     localStorage.setItem("scoreboard",JSON.stringify(array));
   }
+  //fire scoreboard function to build the dom elements
   scoreBoard();
 })
 

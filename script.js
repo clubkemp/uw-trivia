@@ -150,6 +150,17 @@ function endGame(){
 function scoreBoard(){
   scoreDialogueDiv.setAttribute("class","hide")
   var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
+  var sortedScoreboard = scoreboard.sort((a,b) =>{
+    if (a.score < b.score){
+      return 1
+    }else {
+      return -1
+    }
+  })
+  console.log(sortedScoreboard)
+  for (var i=0; i<scoreboard.length; i++){
+    console.log(scoreboard[i].initial, scoreboard[i].score)
+  }
 }
 
 scoreboardBtn.addEventListener("click", function(event){
@@ -163,10 +174,6 @@ scoreboardBtn.addEventListener("click", function(event){
     scoreboard.push(newScore);
     localStorage.setItem("scoreboard",JSON.stringify(scoreboard));
   }
-  scoreboard();
-  
-  
-  // var scoresObj = JSON.parse() []
   scoreBoard();
 })
 

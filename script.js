@@ -25,18 +25,22 @@ var cardDeck = [
 // var jumbotronDiv  = document.querySelector(".jumbotron")
 var gameContentDiv = document.querySelector("#game-content");
 var jumboContentDiv = document.querySelector("#jumbo-content");
+var scoreDialogueDiv = document.querySelector("#end-game-dialogue");
 var startBtn = document.querySelector("#play-button");
 var nextBtn = document.querySelector("#flip-button");
 var flipBtn = document.querySelector("#flip-button");
 var clockH3 = document.querySelector("#clock");
 var form = document.querySelector("#form");
+var scoreboardBtn = document.querySelector("#scoreboard")
+var scoreboardInput = document.querySelector("#initials")
 //not a dom variable, but used to iterate over the radio ids
 var radioIds = ["a1","a2","a3","a4"];
+
 
 //Score
 var score = 0;
 //what we want out total time to count down from
-var time = 60;
+var time = 5;
 //controls what
 //TODO: Need a way to randomize the card number, then pick random numbers between 1-13 that haven't been picked before
 var cardNum = 1;
@@ -138,8 +142,34 @@ function checkAnswer(answerToCheck){
 //fired at time expires in timer function, or if you run out of cards in next click
 function endGame(){
   //TODO: build the scoreboard with playButton
-  alert(`You've made it to the end! your score was ${score}`)
+  gameContentDiv.setAttribute("class", "hide")
+  clockH3.setAttribute("class", "hide");
+  scoreDialogueDiv.setAttribute("class","jumbotron col-md-10 col-sm-12")
 }
+
+function scoreBoard(){
+  scoreDialogueDiv.setAttribute("class","hide")
+  var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
+}
+
+scoreboardBtn.addEventListener("click", function(event){
+  // var testScores = [{initial:"jak", score:4 },{initial:"hoo", score:5 }]
+  var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
+  var newScore = {initial:scoreboardInput.value, score:score } 
+  if(scoreboard === null){
+    // just add the new score to localStorage
+    localStorage.setItem("scoreboard",JSON.stringify(newScore));
+  }else{
+    scoreboard.push(newScore);
+    localStorage.setItem("scoreboard",JSON.stringify(scoreboard));
+  }
+  scoreboard();
+  
+  
+  // var scoresObj = JSON.parse() []
+  scoreBoard();
+})
+
 //Start Game!
 startBtn.addEventListener("click", function(event){
     //turn off the jumbotron intro section
@@ -173,6 +203,7 @@ nextBtn.addEventListener("click", function(event){
     cardBuild(cardNum);
   };
 });
+
 //listens for the users input on the radio buttons in the form
 form.addEventListener("change", function(event){
   //each time there is change, loop through the radio DOM elements

@@ -33,6 +33,8 @@ var clockH3 = document.querySelector("#clock");
 var form = document.querySelector("#form");
 var scoreboardBtn = document.querySelector("#scoreboard")
 var scoreboardInput = document.querySelector("#initials")
+var leaderBoardOL = document.querySelector("#leaderboard")
+var scoreAnnounceJumbo = document.querySelector("#score-announce")
 //not a dom variable, but used to iterate over the radio ids
 var radioIds = ["a1","a2","a3","a4"];
 
@@ -148,7 +150,7 @@ function endGame(){
 }
 
 function scoreBoard(){
-  scoreDialogueDiv.setAttribute("class","hide")
+  scoreAnnounceJumbo.setAttribute("class","hide")
   var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
   var sortedScoreboard = scoreboard.sort((a,b) =>{
     if (a.score < b.score){
@@ -159,7 +161,10 @@ function scoreBoard(){
   })
   console.log(sortedScoreboard)
   for (var i=0; i<scoreboard.length; i++){
-    console.log(scoreboard[i].initial, scoreboard[i].score)
+    var liElm = document.createElement("li");
+    liElm.textContent = `Initials: ${sortedScoreboard[i].initial} ---- Score:${sortedScoreboard[i].score}`;
+    console.log(liElm);
+    leaderBoardOL.appendChild(liElm);
   }
 }
 

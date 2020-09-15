@@ -42,7 +42,7 @@ var radioIds = ["a1","a2","a3","a4"];
 //Score
 var score = 0;
 //what we want out total time to count down from
-var time = 5;
+var time = 60;
 //controls what
 //TODO: Need a way to randomize the card number, then pick random numbers between 1-13 that haven't been picked before
 var cardNum = 1;
@@ -149,18 +149,30 @@ function endGame(){
   scoreDialogueDiv.setAttribute("class","jumbotron col-md-10 col-sm-12")
 }
 
+//This function fires on the event listener for the scoreboard button at the end of the game
 function scoreBoard(){
+  //turn off the game end announcment secion
   scoreAnnounceJumbo.setAttribute("class","hide")
+  var array = [];
+  var sortedScoreboard;
   var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
-  var sortedScoreboard = scoreboard.sort((a,b) =>{
-    if (a.score < b.score){
-      return 1
-    }else {
-      return -1
-    }
-  })
+  //TODO: create an if statement around this to print just one thing if its just an obj
+  console.log(scoreboard);
+  if(scoreboard.length >=2){
+    sortedScoreboard = scoreboard.sort((a,b) =>{
+      if (a.score < b.score){
+        return 1
+      }else {
+        return -1
+      }
+    })
+  }else{
+    array.push(scoreboard);
+    console.log(array);
+    sortedScoreboard = array
+  }
   console.log(sortedScoreboard)
-  for (var i=0; i<scoreboard.length; i++){
+  for (var i=0; i<sortedScoreboard.length; i++){
     var liElm = document.createElement("li");
     liElm.textContent = `Initials: ${sortedScoreboard[i].initial} ---- Score:${sortedScoreboard[i].score}`;
     console.log(liElm);
@@ -169,15 +181,25 @@ function scoreBoard(){
 }
 
 scoreboardBtn.addEventListener("click", function(event){
-  // var testScores = [{initial:"jak", score:4 },{initial:"hoo", score:5 }]
+  var array = [];
   var scoreboard = JSON.parse(localStorage.getItem("scoreboard"));
   var newScore = {initial:scoreboardInput.value, score:score } 
+  
+  //TODO: THis is still not behaving how I want, need to pull the scoreboard, but deal whith it when it is empty, or a single obj
   if(scoreboard === null){
     // just add the new score to localStorage
+    console.log("No obj in memory");
     localStorage.setItem("scoreboard",JSON.stringify(newScore));
-  }else{
+  }else if(scoreboard.length >=2){
+    console.log("multiple obj in memory");
+    console.log(scoreboard);
     scoreboard.push(newScore);
     localStorage.setItem("scoreboard",JSON.stringify(scoreboard));
+  }else{
+    console.log("Single OBJ in memory")
+    array.push(scoreboard);
+    array.push(newScore);
+    localStorage.setItem("scoreboard",JSON.stringify(array));
   }
   scoreBoard();
 })

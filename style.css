@@ -1,6 +1,9 @@
 body{
-    background: paleturquoise;
+    
     font-family: 'Lato', sans-serif;
+}
+h1{
+    text-align: center;
 }
 
 .jumbotron{
@@ -16,4 +19,16 @@ body{
 header {
     width: 100vw;
     top: 0;
+    background-color: #0099cc;
   }
+
+.right{
+    color: green
+}
+
+.wrong{
+    color: red
+}
+.clock-wrong{
+    background-color: red;
+}

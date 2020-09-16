@@ -1,8 +1,3 @@
-//TODO: maybe adjust the time decution to 5s
-//TODO: indicate a right or wrong answer
-//TODO: Flash the clock when you get a wrong asnwer
-
-
 //Create triva card deck and answer bucket
 var answerBucket = ["3 Muskateers", "100 Grand", "Almond Joy", "Baby Ruth","Butterfinger", "Cadbury Carmel Egg", "Charleston Chew", "Heath", "Mars Bar", "Milky Way", "Payday", "Rolo", "Snickers", "Tootsie Roll" ];
 var cardDeck = [
@@ -36,6 +31,8 @@ var scoreboardInput = document.querySelector("#initials")
 var leaderBoardOL = document.querySelector("#leaderboard")
 var scoreAnnounceJumbo = document.querySelector("#score-announce")
 var scoreh3 = document.querySelector("#score-header")
+var wrongh3 = document.querySelector("#wrong")
+var righth3 = document.querySelector("#right")
 //not a dom variable, but used to iterate over the radio ids
 var radioIds = ["a1","a2","a3","a4"];
 
@@ -45,7 +42,6 @@ var score = 0;
 //what we want out total time to count down from
 var time = 60;
 //controls what
-//TODO: Need a way to randomize the card number, then pick random numbers between 1-13 that haven't been picked before
 var cardNum = 1;
 //variable to hold the chosen radio on next
 var chosenAnswer;
@@ -60,6 +56,7 @@ function timer(){
     function startTime(){
         //End Game if time runs out
         if(time <= 0){
+          clockH3.textContent = 0
           endGame();
           clearInterval(counter);
         }else{
@@ -125,6 +122,10 @@ function cardBuild(i) {
     gameContentDiv.querySelector(`#${radioIds[i]}`).setAttribute("value", answers[i]);
     //labels
     gameContentDiv.querySelector(`#${radioIds[i]}-label`).textContent=answers[i];
+    //turn off the the right or wrong div so you get a flash effect
+    
+    
+    
   };
 };
 
@@ -135,19 +136,31 @@ function checkAnswer(answerToCheck){
     //iff correct add to score
     score++;
     console.log(score);
+    //turn on the right dialoge
+    righth3.setAttribute("class", "right")
+    //turns off after 400ms
+    setTimeout(function(){ righth3.setAttribute("class", "hide"); }, 400);
+
   }else{
     //if incorrect, reduce the users time
     time = time - 10;
+    //set the wrong header to visible real quick
+    wrongh3.setAttribute("class", "wrong")
+    //turn it off after 400ms
+    setTimeout(function(){ wrongh3.setAttribute("class", "hide"); }, 400);
   }
 
 };
 
 //fired at time expires in timer function, or if you run out of cards in next click
 function endGame(){
-  //TODO: build the scoreboard with playButton
+  //hide the game conetne
   gameContentDiv.setAttribute("class", "hide")
+  //hide the clock
   clockH3.setAttribute("class", "hide");
+  //unhide the scoreboard dialouge
   scoreDialogueDiv.setAttribute("class","jumbotron col-md-10 col-sm-12")
+  //put the dialogue for hte score set to the users score
   scoreh3.textContent = `Your score was ${score} out of 13`
 }
 

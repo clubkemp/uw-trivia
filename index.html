@@ -11,15 +11,14 @@
 </head>
 <body>
     <header>
-        <div class="p-3 bg-secondary">
-            <h1>Candyman</h1>
+        <div class="p-3">
+            <h1 class="display-4">Candyman</h1>
         </div>
     </header>
     <main class="container">
         <div class="row mt-5">
             <div class="col" id="jumbo-content">
                 <div class="jumbotron col-md-10 col-sm-12">
-                    <h1 class="display-4">Welcome to Trivia!</h1>
                     <p class="lead">The game is simple, answer as many questions as you can regarding these candy bars as quickly as possible. Each answer get's a point, each wrong answer reduces your time</p>
                     <hr class="my-4">
                     <p>Once you hit the button you will have 60 seconds, so be ready!</p>
@@ -42,7 +41,6 @@
                             <input type="radio" id="a4" value="" name="answer">
                             <label for="a4" id="a4-label">Answer 4</label><br>
                             <button class="btn btn-primary btn-lg mt-5" id="flip-button" type="submit" form="form" value="Submit">Next</button>
-
                           </form>
                     </div>
                 </div>
@@ -63,6 +61,11 @@
         <div class="row justify-content-center mt-5">
             <div class="col-1">
                 <h3 class="hide" id="clock">60s</h3>
+            </div>
+        </div><div class="row justify-content-center mt-5">
+            <div class="col-4">
+                <h3 class="hide" id="wrong">wrong!</h3>
+                <h3 class="hide" id="right">right!</h3>
             </div>
         </div>
     </main>

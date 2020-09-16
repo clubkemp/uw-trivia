@@ -10,7 +10,7 @@ A simple guesser game to test out DOM manipulation and leveraging local storage.
 * "Is there caramel in the center?"
 * "WHAT MAKES THIS SO DELICIOUS!?"
 
-Well now you can try your hand at guessing. Try out the [Candyman](https://clubkemp.github.io/uw-trivia) to test your hand and see just how much candybar knowledge you have. How many can you guess in 60s.
+Well now you can try your hand at guessing. Try out the [Candyman](https://github.com/clubkemp/uw-trivia/blob/master/assets/Sample.JPG) to test your hand and see just how much candybar knowledge you have. How many can you guess in 60s.
 
 The application is built on using vanilla Javascript, as an excercise in using vanilla JS to manipulate the DOM. Bootstrap was used to quickly get the elements onto a semi-decent looking page for deployment
 

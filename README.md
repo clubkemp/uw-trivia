@@ -2,7 +2,7 @@
 
 ## Description 
 
-![Sample page image](./assets/sample.JPG)
+![Sample page image](/assets/sample.JPG)
 
 A simple guesser game to test out DOM manipulation and leveraging local storage. The idea is as old as time, candy is delicious, but you're always left wondering: 
 
@@ -10,7 +10,7 @@ A simple guesser game to test out DOM manipulation and leveraging local storage.
 * "Is there caramel in the center?"
 * "WHAT MAKES THIS SO DELICIOUS!?"
 
-Well now you can try your hand at guessing. Try out the [Candyman](https://github.com/clubkemp/uw-trivia/blob/master/assets/Sample.JPG) to test your hand and see just how much candybar knowledge you have. How many can you guess in 60s.
+Well now you can try your hand at guessing. Try out the [Candyman](https://clubkemp.github.io/uw-trivia) to test your hand and see just how much candybar knowledge you have. How many can you guess in 60s.
 
 The application is built on using vanilla Javascript, as an excercise in using vanilla JS to manipulate the DOM. Bootstrap was used to quickly get the elements onto a semi-decent looking page for deployment
 
@@ -32,7 +32,7 @@ Clone the repo using https to tweak the code. To run the game visit [Candyman](h
 ## Credits
 As always, big thank you for the instructor team at uw/trilogy for all the help 
 
-css framwork brought to you by [bootstrap](https://getbootstrap.com/)
+css framwork brought to you by[bootstrap](https://getbootstrap.com/)
 
 Big ups to [Krupa](https://www.kirupa.com/html5/shuffling_array_js.htm) for laying out a shuffling function to help randomize the final password for extra security.
 

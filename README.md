@@ -1,42 +1,64 @@
-# 04 Web APIs: Code Quiz
+# Candyman Trivia
 
-As you proceed in your career as a web developer, you will probably be asked to complete a coding assessment, which is typically a combination of multiple-choice questions and interactive challenges. Build a timed code quiz with multiple-choice questions. This app will run in the browser and feature dynamically updated HTML and CSS powered by your JavaScript code. It will also feature a clean and polished user interface and be responsive, ensuring that it adapts to multiple screen sizes.
+## Description 
 
-## User Story
+![Sample page image](./assets/sample.JPG)
 
-```
-AS A coding bootcamp student
-I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-SO THAT I can gauge my progress compared to my peers
-```
+A simple guesser game to test out DOM manipulation and leveraging local storage. The idea is as old as time, candy is delicious, but you're always left wondering: 
 
-## Acceptance Criteria
+* "How much nugget is in there?"
+* "Is there caramel in the center?"
+* "WHAT MAKES THIS SO DELICIOUS!?"
 
-```
-GIVEN I am taking a code quiz
-WHEN I click the start button
-THEN a timer starts and I am presented with a question
-WHEN I answer a question
-THEN I am presented with another question
-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock
-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-WHEN the game is over
-THEN I can save my initials and score
-```
+Well now you can try your hand at guessing. Try out the [Candyman](https://clubkemp.github.io/uw-trivia) to test your hand and see just how much candybar knowledge you have. How many can you guess in 60s.
 
-The following animation demonstrates the application functionality:
+The application is built on using vanilla Javascript, as an excercise in using vanilla JS to manipulate the DOM. Bootstrap was used to quickly get the elements onto a semi-decent looking page for deployment
 
-![code quiz](./Assets/04-web-apis-homework-demo.gif)
 
-### Review
+## Installation
 
-You are required to submit the following for review:
+Clone the repo using https to tweak the code. To run the game visit [Candyman](https://clubkemp.github.io/uw-trivia)
 
-* The URL of the functional, deployed application.
 
-* The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+## Usage 
 
-- - -
-© 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
+1. click start
+2. use the radio buttons to pick which candybar you think the cross section is
+3. if you are right you will get a point, if you are wrong you will get deducted 10s
+4. once you are done, and think your score is pretty good and you initials to the scoreboard
+5. scores are saved in local storage, so anyone that plays again on your machine can see your scores
+
+
+## Credits
+As always, big thank you for the instructor team at uw/trilogy for all the help 
+
+css framwork brought to you by [bootstrap](https://getbootstrap.com/)
+
+Big ups to [Krupa](https://www.kirupa.com/html5/shuffling_array_js.htm) for laying out a shuffling function to help randomize the final password for extra security.
+
+
+
+
+## License
+
+MIT License
+
+Copyright (c) [2020] [Jonny Kemp]
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.

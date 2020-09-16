@@ -2,7 +2,7 @@
 
 ## Description 
 
-![Sample page image](/assets/sample.JPG)
+![Sample page image](/assets/Sample.JPG)
 
 A simple guesser game to test out DOM manipulation and leveraging local storage. The idea is as old as time, candy is delicious, but you're always left wondering: 
 
